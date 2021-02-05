@@ -41,7 +41,7 @@ public class NameScoreContext {
 			return nameScoreStrategy.score(inputProcessor.process(file));
 		} catch (Exception e) {
 			logger.error("Unexpected exception when scoring file {}", file.getAbsolutePath(), e);
-			return 0;
+			return -1;
 		}
 	}
 }

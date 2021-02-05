@@ -5,6 +5,7 @@ package com.occ.namescore;
 
 import java.io.File;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -28,13 +29,18 @@ import com.occ.namescore.strategy.NameScoreStrategyImpl_1;
 @EnableConfigurationProperties({
     FileStorageProperties.class
 })
-public class NameScoreComputer {
+public class NameScoreComputer implements CommandLineRunner {
 
 	/**
 	 * @param args  the full file path/name containing list of names to score, e.g. "./src/main/resources/all-names.txt"
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(NameScoreComputer.class, args);
+		
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
 		if (args.length == 0) {
 			System.out.println("=============================================");
 			System.out.println(" USAGE: NameScoreComputer <FilePath/name> ");
@@ -55,6 +61,7 @@ public class NameScoreComputer {
 		System.out.println("=============================================");
 		System.out.println("Computed score is " + score);
 		System.out.println("=============================================");
+		
 	}
 
 }

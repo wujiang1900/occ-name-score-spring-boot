@@ -40,7 +40,7 @@ $ ./mvnw test
 	2) https://www.callicoder.com/spring-boot-file-upload-download-rest-api-example/
 
 ### Assumptions:
-1. if there's any problem during file processing and name scoring, exception will be logged, score of 0 will be the returned;
+1. if there's any problem during file processing and name scoring, exception will be logged, score of -1 will be the returned;
 2. if the file doesn't contain any names, score will be 0;
 3. In computing score for a name, any non-letter characters (e.g. '.) are ignored.
 
