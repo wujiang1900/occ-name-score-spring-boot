@@ -32,10 +32,13 @@ $ ./mvnw test
 2. Strategy design pattern is implemented for easy change of file processing and name-scoring algorithms, to accommodate the foreseen changed requirements.
 3. The use of Spring properties/configurations/injections allow us to easily implement Strategy pattern and adhere to SOLID principles 
    for better application maintenance.
-4. maven is used as the dependencies management tool. ./pom.xml is the manifest of dependent libraries.
+4. Maven is used as the dependencies management tool. ./pom.xml is the manifest of dependent libraries.
 5. Newer Java8 features utilized: try-resource, Optional, Stream, lambda expressions, to take advantages of newer java language features.
-6. Comprehensive junit/mockito tests have been included to ensure code quality and facilitate future enhancement/maintenance.
-7. references used for implementing file uploading endpoint:
+6. Java Parallel Stream is utilized to improve data sorting and processing, for multi-core CPUs.
+7. For huge data files (e.g. millions of names), Java Parallel Stream will help on computing performance. However, we might get memory issues if data being 
+   processed is too large. To relieve memory issues, we can implement some sort of in-memory caching solutions, e.g. redis cache, as a future enhancement.
+8. Comprehensive junit/mockito tests have been included to ensure code quality and facilitate future enhancement/maintenance.
+9. references used for implementing file uploading endpoint:
 	1) https://spring.io/guides/gs/uploading-files/
 	2) https://www.callicoder.com/spring-boot-file-upload-download-rest-api-example/
 

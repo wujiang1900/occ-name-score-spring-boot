@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
  *  To score a list of names, you must sort it alphabetically and sum the individual scores for all the names. 
  *  To score a name, sum the alphabetical value of each letter (A=1, B=2, C=3, etc...) 
  *  and multiply the sum by the name’s position in the list (1-based).
+ *  
+ *  parallelStream is utilized to improve data sorting and processing, for multi-core CPUs.
  */
 
 @Service
@@ -22,8 +24,9 @@ public class NameScoreStrategyImpl_1 implements NameScoreStrategy {
 		if(names.isEmpty()) {
 			return 0;
 		}
-		List<String> sorted = names.get().stream().sorted().collect(Collectors.toList());
+		List<String> sorted = names.get().parallelStream().sorted().collect(Collectors.toList());
 		return IntStream.range(1, sorted.size()+1)
+				.parallel()
 				.map(i->i*scoreName(sorted.get(i-1)))
 				.sum();
 	}
@@ -33,6 +36,7 @@ public class NameScoreStrategyImpl_1 implements NameScoreStrategy {
 			return 0;
 		}
 		return name.toUpperCase().chars()
+				.parallel()
 				.filter(ch->(ch>=(int)'A' && ch<=(int)'Z'))
 				.map(ch->ch-(int)'A'+1).sum();
 	}
